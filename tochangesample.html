@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lighthouse Island Bistro</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { font-family:Verdana, Arial, sans-serif;
+       background-color: #00005D;
+}
+#wrapper { background-color: #b3c7e6; 
+           color: #000066;
+           width: 80%;
+		   margin: auto;
+} 
+header { background-color: #869dc7;
+        color: #00005D; 
+		padding: 10px;
+}
+header h1 { padding-left: 20px;
+ }
+header span { font-style: italic;
+			  font-weight: bold;
+			  color: #00005D;
+			  padding-right: 15px;
+			  text-align: right;
+		      display: block; 
+}
+nav { float: left;
+	   width: 150px;
+	   letter-spacing:0.1em;
+	   font-weight: bold;
+} 
+nav ul { list-style-type: none; 
+         margin: 0;
+         padding: 0;
+}
+nav li { padding: 15px;
+}
+nav a { text-decoration: none; 
+    
+}
+nav a:link { color: #ffffff; }
+nav a:visited { color: #eaeaea; }
+nav a:hover {  color: #869dc7;}
+main { background-color: #ffffff;
+           color: #000000;
+		   padding: 10px 20px;
+		   margin-left: 150px;
+	       overflow: auto; 
+} 
+
+h2 { color: #869dc7; 
+     font-family: arial, sans-serif;
+	 margin: 5px;
+}
+
+figure {   float: right;
+		   margin: 10px;
+		   padding-left: 20px;
+ }
+figcaption { text-align: center;
+		   font-size: .8em;
+		   font-style: italic;
+}
+
+footer {font-size:70%;
+         text-align: center;
+         padding: 10px;
+         background-color: #869dc7;
+		 clear: both;
+}
+header, main, nav, footer, figure, figcaption { display: block; }
+@media only screen and (max-width: 1024px) {
+	body { margin: 0; }
+	#wrapper { width: auto; }                                                              
+	main { margin-left: 0; }
+	nav { float: none; 
+          width: auto; }
+	nav li { display: inline-block; 
+               padding: 0.5em; }
+	nav ul { text-align: center; }
+	nav a { border-style: none; }
+	h1, h2 { font-size: 120%; }
+	p { font-size: 90%; }
+} 
+@media only screen and (max-width: 768px) {
+	h1, h2 { font-size: 100%; }
+	span { font-size: 80%; } 
+  	figure { display: float;}
+ 	nav, nav ul, nav li { padding: 0; }
+ 	nav li { display: block; }
+    nav a { display: block; 
+      	padding: 0.5em 0;
+        border-bottom: 2px ridge #00005D; }
+    }
+
+</style>
+
+<link href="https://www.jsviews.com/samples/samples.css" rel="stylesheet" />
+
+<!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>   
+<![endif]-->
+</head>
+<body>
+<div id="wrapper">  
+  <header>
+      <h1>Lighthouse Island Bistro</h1>
+      <span>the best coffee on the coast</span>
+  </header>  
+  <nav>
+    <ul>
+	 <li><a data-link="hzn4cx4" class="link">Happy</a></li>
+     <li><a data-link="jccfd2o" class="link" >Creatives</a></li>
+     <li><a data-link="ffaz4w5"  class="link">Coffe Culture</a></li>
+     <li><a data-link="n4dc53r"  class="link">Colors</a></li>
+	</ul> 
+   </nav>
+   <main> 
+
+    <form method="get" id="search_target" style="clear:left; display: inline-block;">
+        <label>Movie Name: <input type="text" name="fname" id="searchname"></label><br><br>
+      
+         <input type="submit" value="Submit"> <input type="reset">
+        </form>
+<br>
+
+<!--Templating-->
+<script id="theTmpl" type="text/x-jsrender">
+    
+    {^{for data}}
+
+ 
+
+   
+  
+    <figure> 
+        <img src={{:src.original}} alt="{{:alt}}" width="225" height="168">
+        <figcaption>{{:alt}}</figcaption>
+        <a href={{:src.original}} class=link>click</a>
+    </figure>
+
+     
+
+    
+
+    {{if media}}
+    <figure> 
+
+    <img src="{{:src.original}}" alt="{{:alt}}" width="225" height="168">
+    <figcaption>{{:alt}}    </figcaption>
+    </figure>
+    
+    {{/if}}
+    
+    {{/for}}
+    
+  </script>        
+
+    
+<!--Templating goes into result-->
+    <div id="result"></div>
+ 
+ 
+
+
+
+</main> 
+
+<script id="prevpagination" type="text/x-jsrender">
+    <div id="prev">
+    
+        {{if prev}}
+        <a  class=linkPagenation style="float: left;" data-to-link={{:prev}}  data-link="{on ~pageClicked}">{{:title}}</a>
+     {{/if}}
+       
+    </div>    
+  
+     
+    </script>
+<script id="nextpagination" type="text/x-jsrender">
+   
+<div id="next">
+    {{if next}}
+
+    <a class="linkPagenation" style="float: right;" data-to-link={{:next}} data-link="{on ~pageClicked}" > {{:title}}</a>
+    {{/if}}
+</div>
+ 
+</script>
+<div id="prevpgnresult"></div>
+<div id="nextpgnresult"></div>
+   <footer>Copyright &copy; 2016
+   </footer>
+  </div> 
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://www.jsviews.com/download/jsviews.min.js"></script>
+
+  <script>
+ 
+ window.addEventListener('load', () => {
+
+ 
+    //Headers have to be create on here as it wont be created by browser or specified header details are not
+    //are not present by default
+   //set global var info
+    let info;
+    //fetch images fubnction is  ade async as is an I/O to pexels API
+
+
+  function pagination(prev,next){
+
+    function pageDirectionPrevious() {
+   
+    
+       
+         fetchForPaginationPexel(prev).then(()=>{
+        //when response receiver render template
+        var template = $.templates("#theTmpl");
+        if(info.photos)
+        template.link("#result", {data:info.photos});
+        else
+         template.link("#result", {data:info.media});
+      
+   
+   
+   });
+  }
+
+  function pageDirectionNext() {
+   
+    
+       
+   fetchForPaginationPexel(next).then(()=>{
+  //when response receiver render template
+  var template = $.templates("#theTmpl");
+  if(info.photos)
+  template.link("#result", {data:info.photos});
+  else
+   template.link("#result", {data:info.media});
+
+
+
+});
+}
+   
+
+if(prev){
+
+         
+    var directionLink = {
+  pageClicked: pageDirectionPrevious
+}
+
+
+    //var pgTemplate = $.templates("#pagination");
+  
+   // pgTemplate.link("#pgnresult", {"prev":prev,"title":"prev"},helpers);
+   var pgTemplate = $.templates("#prevpagination");
+   
+    
+    pgTemplate.link("#prevpgnresult", {"prev":prev,"title":"prev"},directionLink);
+    console.log(prev);
+
+}
+else
+{
+    var pgTemplate = $.templates("#prevpagination");
+   
+    
+   pgTemplate.link("#prevpgnresult", {"prev":"","title":""});
+}
+
+ if (next){
+
+    var directionLink = {
+        pageClicked: pageDirectionNext
+}
+
+  
+
+var pgTemplate = $.templates("#nextpagination");
+    
+    pgTemplate.link("#nextpgnresult", {"next":next,"title":"next"},directionLink);
+  
+
+}
+else
+{
+    var pgTemplate = $.templates("#prevpagination");
+   
+    
+   pgTemplate.link("#prevpgnresult", {"next":"","title":""});
+}
+  }  
+
+  async function fetchForPaginationPexel(url) {
+     const response = await fetch(url, {
+           "method": "GET",
+           "headers": {
+               "Authorization":"563492ad6f917000010000019c76ccfdf8f0473398a5ce9b089f4106"
+   
+                    }
+         
+       })
+     // waits until the request completes...
+    data= await response.json();
+   info= await data;
+
+   console.log(info)
+   
+
+   if(info.prev_page)
+   await pagination(info.prev_page,info.next_page);
+   else
+   await pagination(null,info.next_page);
+   
+   }
+    
+async function fetchPexel(params="nature") {//
+     const response = await fetch(`https://api.pexels.com/v1/search?query=${params}&per_page=8`, {
+           "method": "GET",
+           "headers": {
+               "Authorization":"563492ad6f917000010000019c76ccfdf8f0473398a5ce9b089f4106"
+   
+                    }
+         
+       })
+     // waits until the request completes...
+    data= await response.json();
+   info= await data;
+  
+   if(info.prev_page)
+   pagination(info.prev_page,info.next_page);
+   else
+   pagination(null,info.next_page);
+   
+   }
+
+   //function for collections
+async function fetchPexelCollections(params) {
+     const response = await fetch(`https://api.pexels.com/v1/collections/${params}?per_page=2`, {
+           "method": "GET",
+           "headers": {
+               "Authorization":"563492ad6f917000010000019c76ccfdf8f0473398a5ce9b089f4106"
+   
+                    }
+         
+       })
+     // waits until the request completes...
+    data= await response.json();
+   info= await data;
+   if(info.prev_page)
+   pagination(info.prev_page,info.next_page);
+   else
+   pagination(null,info.next_page);
+   
+   }
+   
+  
+    //initial asynchronous loading begins
+    
+   const p= fetchPexel().then(()=>{
+       //when response receiver render template
+       var template = $.templates("#theTmpl");
+       template.link("#result", {data:info.photos});
+    
+    
+   
+   
+   });
+ 
+    
+   
+   //jquery used to create search function
+
+   
+   $( "#search_target" ).submit(function( event ) {
+       event.preventDefault();
+   
+    var search= $("#searchname").val()
+   
+    fetchPexel(search).then(()=>{
+           //once data retrieve template is loaded with new data
+       var template = $.templates("#theTmpl");
+       template.link("#result", {data:info.photos});
+ 
+
+ 
+   
+   });
+ 
+   
+   });
+   
+    $('.link').click((e)=>{
+        e.preventDefault();
+        let collectionID=e.target.getAttribute('data-link');
+        console.log(collectionID)
+        fetchPexelCollections(collectionID).then(()=>{
+       //when response receiver render template
+       var template = $.templates("#theTmpl");
+       template.link("#result", {data:info.media});
+      
+   
+   
+   });
+ 
+   
+
+    });
+
+    $('.linkPagenation').click((e)=>{
+      alert("fdgdf")
+        e.preventDefault();
+        let href=e.target.getAttribute('data-to-link');
+        console.log(href)
+         fetchForPaginationPexel(href).then(()=>{
+        //when response receiver render template
+        var template = $.templates("#theTmpl");
+        template.link("#result", {data:info.photos});
+       
+   
+   
+//    });
+});
+});
+
+
+
+   
+});
+
+
+ 
+
+
+   
+       </script>
+</body>
+</html>
+
+
