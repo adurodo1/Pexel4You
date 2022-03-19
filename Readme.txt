@@ -1,6 +1,6 @@
-Thanks for downloading this template!
+ Demonstration of implementing Pexel API visit website for preview
 
-Template Name: Regna
-Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+https://adurodo1.github.io/Pexel4You/
+
+Bootstrap: Template Name: Regna
+Rendering tool: Jsviews.com
